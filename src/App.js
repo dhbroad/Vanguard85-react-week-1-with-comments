@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import About from './views/About';
+import Cart from './views/Cart'
 import Contact from './views/Contact';
 import CreatePost from './views/CreatePost';
 import Home from './views/Home';
@@ -55,10 +56,10 @@ export default function App () { // creating a function called "App"
     localStorage.removeItem('vanguard_user') // removes the vanguard_user stored variable from local storage if the user signs out
   }
 
-  const happyBirthday = () => { // this function changes the state of age, so if we call it below in the render() { return()}, we can update the current state's age
-      setAge(age + 1)
+  // const happyBirthday = () => { // this function changes the state of age, so if we call it below in the render() { return()}, we can update the current state's age
+  //     setAge(age + 1)
     
-  };
+  // };
 
   const addToCart = (product) => {setCart([...cart, product])}; // ...cart clones the cart, and whatever you add after will be added on
   const removeFromCart = (product) => {
@@ -105,8 +106,8 @@ export default function App () { // creating a function called "App"
         <button onClick={()=>this.happyBirthday()}>Happy Birthday</button> */}
         <div className='container d-flex justify-content-center mt-4'> {/* d-flex is a built in Bootstrap class to make your div a flex container. mt-4 stands for margin top 4 */}
           <Routes>
-            <Route path='/' element={<Home name={name} />} /> {/* for RFC, all of the variables we pass through changed from this.state.variable-name, to just the variable name */}
-            <Route path='/about' element={<About myClass={this.state.people} />} /> {/* myClass={this.state.people} is passing myClass as a prop so we can use it in the About.js view*/}
+            <Route path='/' element={<Home />} /> {/* for RFC, all of the variables we pass through changed from this.state.variable-name, to just the variable name */}
+            <Route path='/about' element={<About myClass={people} />} /> {/* myClass={this.state.people} is passing myClass as a prop so we can use it in the About.js view*/}
             <Route path='/news' element={<News />} />
             <Route path='/instagram' element={<IG />} />
             <Route path='/instagram/:postId' element={<SinglePost user={user}/>} /> {/* to create a route/path that changes you have to use : and then a name */}

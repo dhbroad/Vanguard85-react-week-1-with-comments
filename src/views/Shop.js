@@ -9,7 +9,7 @@ import Product from '../components/Product';
 // 
 
 
-export default function Shop() {
+export default function Shop({ addToCart }) {
     const [products, setProducts] = useState([]);
 
     useEffect(async ()=>{
