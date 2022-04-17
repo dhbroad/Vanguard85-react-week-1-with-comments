@@ -26,7 +26,7 @@ export default function Shop() {
 
   return (
     <div className='row'> {/* className='row' is using Bootstraps system to turn our Product page into a flexbox where each item shows up on 1 row (which also wraps if you shrink the page) */}
-        {products.map((p, i)=><Product key={i} product={p}/>)} {/* Look at Product.js to see how we accept this prop from this RFC file, vs an RCC file */}
+        {products.map((p, i)=><Product key={i} addToCart={addToCart} product={p}/>)} {/* Look at Product.js to see how we accept this prop from this RFC file, vs an RCC file */}
     </div>
   )
 }

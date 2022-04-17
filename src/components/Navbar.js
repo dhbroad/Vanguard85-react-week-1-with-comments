@@ -1,9 +1,11 @@
 import React, { Component } from 'react'; // React is the default export of the base react file. Component is not a default export, so we have to add {} around it
 import { Link } from 'react-router-dom';
 import './Navbar.css' // This css had to be imported manually so we could style our navbar
+import { FaShoppingCart } from 'react-icons/fa'
 
-export default class Navbar extends Component { // You can only have one "default" export (which is the main thing that the module exports). When importing in another file, if the thing you are trying to export is not the default, you have to put it in {}. If it's the default, you don't need the {} when importing
-  render() {
+export default function Navbar ({ currentUser, logMeOut, cart, sumTotalCart }) { // You can only have one "default" export (which is the main thing that the module exports). When importing in another file, if the thing you are trying to export is not the default, you have to put it in {}. If it's the default, you don't need the {} when importing
+  
+  // render() { <--Render is only needed in React Class Components, and we converted Navbar.js into a React Function Component in Week-9-day-1
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light my-nav">
         <div className="container-fluid">
@@ -31,8 +33,8 @@ export default class Navbar extends Component { // You can only have one "defaul
               <li className="nav-item">
                 <Link className="nav-link" to="/shop">Shop</Link>
               </li>
-              {this.props.currentUser.username ? // syntax for if statements in JSX -> condition ? resultIfTrue : resultIfFalse
-                <li className="nav-item" onClick={()=>this.props.logMeOut()}> 
+              {currentUser.username ? // syntax for if statements in JSX -> condition ? resultIfTrue : resultIfFalse
+                <li className="nav-item" onClick={()=>logMeOut()}> 
                   <Link className="nav-link" to="/login">Log Out</Link>
                 </li>
                 :
@@ -46,8 +48,13 @@ export default class Navbar extends Component { // You can only have one "defaul
                 </>
               }
               <li className="nav-item">
-                
-                <a className="nav-link disabled" href="/" tabIndex="-1" aria-disabled="true">{this.props.currentUser.username}</a>
+                <Link className="nav-link" to="/cart">
+                  <FaShoppingCart />
+                  {cart.length} | {sumTotalCart(cart)}
+                  </Link>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link disabled" href="/" tabIndex="-1" aria-disabled="true">{currentUser.username}</a>
               </li>
             </ul>
             <form className="d-flex">
@@ -58,5 +65,4 @@ export default class Navbar extends Component { // You can only have one "defaul
         </div>
       </nav>
     )
-  }
 }

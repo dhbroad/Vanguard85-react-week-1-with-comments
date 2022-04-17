@@ -30,6 +30,7 @@ export default class IG extends Component {
     render() {
         return (
             <div className='justify-content-around'>
+                <Link to='instagram/post/create'>Create</Link>
                 {this.state.posts.map((p, i)=><Post key={i} post={p}/>)}
             </div>
         )

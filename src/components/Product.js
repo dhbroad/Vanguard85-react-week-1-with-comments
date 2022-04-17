@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 //
 
 
-export default function Product({ product }) { // in RCC, we could just do this.parameterName, but because we're using RFC, we have to create a function to use props
+export default function Product({ addToCart, product }) { // in RCC, we could just do this.parameterName, but because we're using RFC, we have to create a function to use props
     return (
         <div className="card" style={{width: "18rem"}}>
             <ul className="list-group list-group-flush">
@@ -24,7 +24,7 @@ export default function Product({ product }) { // in RCC, we could just do this.
                     </Link>
                 </li>
                 <li className="list-group item">
-                    <a href="/" className="btn btn-primary">Add To Cart</a>
+                    <button onClick={()=>addToCart(product)} href="/" className="btn btn-primary">Add To Cart</button>
                 </li>
             </ul>
         </div>

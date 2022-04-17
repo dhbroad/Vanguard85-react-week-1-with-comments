@@ -1,7 +1,11 @@
+import userEvent from '@testing-library/user-event';
 import React, { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom'; // Need to import useParams to use the variable of the route /instagram/:postId <--variable
 
-export default function SinglePost() {
+
+
+
+export default function SinglePost({ user }) {
     const [redirect, setRedirect ] = useState(false)
     const { postId } = useParams() // useParams() gives us back a dictionary with the postId: '#'. Doing { postId } descructures the dictionary and we get back the number at that postId, because we are calling the postId key by it's name, so we get it's value
 
@@ -28,7 +32,10 @@ export default function SinglePost() {
     )
     :
     (
+        
         // Note: all the class= need to be changed to className= when copying from html to JSX
+        <>
+        <div>
         <div className="card" style={{ width: '18rem' }}>
             <img src={post.image} className="card-img-top" alt={post.title} />
             <div className="card-body">
@@ -36,6 +43,16 @@ export default function SinglePost() {
                 <p className="card-text">{post.caption}</p>
             </div>
         </div>
+        {
+            post.user_id === user.id?
+            <>
+            <Button color='primary' variant='contained'>Update</Button>
+            <Button color='error' variant='contained'>Delete</Button>
+            </> :
+            null
+        }
+        </div>
+        </>
 
     )
 }
